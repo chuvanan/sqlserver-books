@@ -7,6 +7,13 @@
 sudo docker pull mcr.microsoft.com/mssql/server:2019-latest
 ```
 
+* View images:
+
+```bash
+docker images
+# docker image ls
+```
+
 * To run the Linux container image:
 
 ```bash
