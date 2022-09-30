@@ -57,6 +57,10 @@ sudo docker exec -it sql1 "bash"
 /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "1q2w3e4R@"
 ```
 
+* To connect to SQL Server with Azure Studio:
+
+![sql-login](./imgs/SQL_Login.png)
+
 * To end `sqlcmd` session:
 
 ```bash
