@@ -74,6 +74,58 @@ sudo docker stop sql1
 sudo docker rm sql1
 ```
 
+# Restore a database from a backup file in a Linux Docker container
+
+* Download AdventureWorks sample databases: [LINK](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=tsql)
+
+* Check existence of backup folder:
+
+```bash
+sudo docker exec -it sql1 ls var/opt/mssql
+```
+
+* If not, create a new one:
+
+```bash
+sudo docker exec -it sql1 mkdir var/opt/mssql/backup
+```
+
+* Copy the backup file to the container
+
+```bash
+sudo docker cp AdventureWorks2019.bak sql1:/var/opt/mssql/backup
+```
+
+* Check existence of the backup file inside container folder
+
+```bash
+sudo docker exec -it sql1 ls var/opt/mssql/backup
+```
+
+* List out logical file names and paths inside the backup:
+
+```bash
+sudo docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd \
+   -S localhost -U SA -P '1q2w3e4R@' \
+   -Q 'RESTORE FILELISTONLY FROM DISK = "/var/opt/mssql/backup/AdventureWorks2019.bak"'
+```
+
+* Restore database using `sqlcmd`:
+
+```bash
+sudo docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd \
+   -S localhost -U SA -P '1q2w3e4R@' \
+   -Q 'RESTORE DATABASE [AdventureWorks2019] FROM DISK = "/var/opt/mssql/backup/AdventureWorks2019.bak" WITH MOVE "AdventureWorks2017" TO "/var/opt/mssql/data/AdventureWorks2019.mdf", MOVE "AdventureWorks2017_log" TO "/var/opt/mssql/data/AdventureWorks2019_log.ldf", FILE = 1,  NOUNLOAD,  STATS = 5'
+```
+
+* Verify the restored database:
+
+```bash
+sudo docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd \
+   -S localhost -U SA -P '1q2w3e4R@' \
+   -Q 'SELECT Name FROM sys.Databases'
+```
+
 # References
 
 * [Quickstart: Run SQL Server Linux container images with Docker](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver16&pivots=cs1-bash)
