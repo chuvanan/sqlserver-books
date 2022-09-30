@@ -17,7 +17,7 @@ docker images
 * To run the Linux container image:
 
 ```bash
-sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1q2w3e4r" \
+sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1q2w3e4R@" \
    -p 1433:1433 --name sql1 --hostname sql1 \
    -d \
    mcr.microsoft.com/mssql/server:2019-latest
@@ -44,11 +44,17 @@ sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1q2w3e4r" \
 docker ps -a
 ```
 
+* To debug container error (if any):
+
+```bash
+docker logs sql1
+```
+
 * To connect to SQL Server with `sqlcmd`, inside the container
 
 ```bash
 sudo docker exec -it sql1 "bash"
-/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "1q2w3e4r"
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "1q2w3e4R@"
 ```
 
 * To end `sqlcmd` session:
