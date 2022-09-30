@@ -4,6 +4,7 @@
     - **Mike McQuillan - Introducing SQL Server-Apress (2015)**
     - **Jason Brimhall, Jonathan Gennick, Wayne Sheffield - SQL Server T-SQL Recipes, 4th Edition-Apress (2015)**
     - **Robin Dewson (auth.) - Beginning SQL Server for Developers_ Fourth Edition-Apress (2015)**
+    - **Kathi Kellenberger, Lee Everest - Beginning T-SQL_ A Step-by-Step Approach-APRESS (2021)**
     
 * For advanced beginner:
 	- Kathi Kellenberger, Clayton Groom, Ed Pollack - Expert T-SQL Window Functions in SQL Server 2019_ The Hidden Secret to Fast Analytic and Reporting Queries-Apress (2019): comprehensive cover of window functions. **One chapter is of my particular interest - Time range calculations**
